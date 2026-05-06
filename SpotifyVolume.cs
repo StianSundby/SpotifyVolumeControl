@@ -4,11 +4,11 @@ using NAudio.CoreAudioApi;
 
 namespace SpotifyVolumeControl
 {
-    public class SpotifyVolume
+    public class SpotifyVolume(AppSettings _settings)
     {
-        private const float volumeStep = 0.02f; //2% is Windows default
+        private readonly float volumeStep = _settings.VolumeStep;
 
-        public static void AdjustVolume(bool volumeUp)
+        public void AdjustVolume(bool volumeUp)
         {
             var spotifySession = FindSpotifySession();
             if (spotifySession == null)
