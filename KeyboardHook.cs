@@ -63,8 +63,6 @@ namespace SpotifyVolumeControl
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate IntPtr lowLevelKeyboardProc(int nCode, IntPtr wParam, IntPtr lParam);
 
-        // 2. Swapped DllImport for LibraryImport and added 'partial'
-
         [LibraryImport("user32.dll", EntryPoint = "SetWindowsHookExW")]
         private static partial IntPtr SetWindowsHook(int idHook, lowLevelKeyboardProc lpfn, IntPtr hMod, uint dwThreadId);
 
