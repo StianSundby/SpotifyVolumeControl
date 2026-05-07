@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 
 
-namespace SpotifyVolumeControl
+namespace SpotifyVolumeControl.UI
 {
     public class RebindForm : Form
     {

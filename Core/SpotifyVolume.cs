@@ -1,8 +1,9 @@
+using NAudio.CoreAudioApi;
+using SpotifyVolumeControl.Settings;
 using System;
 using System.Diagnostics;
-using NAudio.CoreAudioApi;
 
-namespace SpotifyVolumeControl
+namespace SpotifyVolumeControl.Core
 {
     public class SpotifyVolume(AppSettings _settings)
     {

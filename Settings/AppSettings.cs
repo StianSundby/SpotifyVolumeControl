@@ -4,11 +4,11 @@ using System.Text.Json;
 using System.Windows.Forms;
 
 
-namespace SpotifyVolumeControl
+namespace SpotifyVolumeControl.Settings
 {
     public class AppSettings
     {
-        private static readonly string settingsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),"SpotifyVolumeControl","settings.json");
+        private static readonly string settingsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "SpotifyVolumeControl", "settings.json");
         private static readonly JsonSerializerOptions jsonOptions = new() { WriteIndented = true };
 
         public Keys ToggleKey { get; set; } = Keys.F24;

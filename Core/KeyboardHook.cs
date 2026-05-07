@@ -10,25 +10,25 @@ namespace SpotifyVolumeControl
 
     public partial class KeyboardHook : IDisposable
     {
-        private const int WH_KEYBOARD_LL  = 13;
-        private const int WM_KEYDOWN      = 0x0100;
-        private const int WM_SYSKEYDOWN   = 0x0104;
+        private const int WH_KEYBOARD_LL = 13;
+        private const int WM_KEYDOWN = 0x0100;
+        private const int WM_SYSKEYDOWN = 0x0104;
 
-        private readonly lowLevelKeyboardProc _process; //keep a reference so the garbage collector doesn't collect the delegate while the hook is alive. This was a nightmare to debug.
+        private readonly lowLevelKeyboardProc _process; //keep a reference so the garbage collector doesn't collect the delegate while the hook is alive. Why is this a thing
         private readonly IntPtr _hookId = IntPtr.Zero;
 
         public event keyPressedHandler? KeyPressed;
 
         public KeyboardHook()
         {
-            _process   = HookCallback;
+            _process = HookCallback;
             _hookId = SetHook(_process);
         }
 
         private static IntPtr SetHook(lowLevelKeyboardProc proc)
         {
             using var currentProcess = Process.GetCurrentProcess();
-            using var currentModule  = currentProcess.MainModule!;
+            using var currentModule = currentProcess.MainModule!;
             return SetWindowsHook(WH_KEYBOARD_LL, proc, GetModuleHandle(currentModule.ModuleName!), 0);
         }
 
@@ -36,12 +36,12 @@ namespace SpotifyVolumeControl
         {
             if (nCode >= 0 && (wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN))
             {
-                var key     = (Keys)Marshal.ReadInt32(lParam);
+                var key = (Keys)Marshal.ReadInt32(lParam);
                 bool handled = false;
 
                 KeyPressed?.Invoke(key, ref handled);
-                
-                if (handled) 
+
+                if (handled)
                     return (IntPtr)1; //returning 1 swallows the keypress
             }
 
@@ -56,7 +56,7 @@ namespace SpotifyVolumeControl
 
         protected virtual void Dispose(bool disposing)
         {
-            if (disposing) 
+            if (disposing)
                 UnhookWindowsHook(_hookId);
         }
 
