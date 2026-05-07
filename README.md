@@ -2,6 +2,7 @@
 # 🔈 SpotifyVolumeControl 🔊
 
 > A lightweight Windows tray app that lets a knob press toggle your volume knob between system audio and Spotify-only control.
+<img width="487" height="355" alt="explorer_gem65XnwBX" src="https://github.com/user-attachments/assets/7cfa3209-6184-4674-806b-4c69ec5bb80f" />
 
 Built for the Monsgeek M1 V5 with custom QMK firmware, but **works with any rotary encoder that can send keycodes**.
 
